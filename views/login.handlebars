@@ -1,0 +1,70 @@
+<main class="top_main pb-5">
+    <section>
+        <div class="container d-flex justify-content-center my_container_home mt-3 p-3">
+            <div class="row text-center mt-5 mb-5 w-75">
+                    <div>
+                        <img class="img_user" src="../assets/img/img_default.jpg" alt="img_user" width="220">
+                    </div>
+                    <div>
+                        <h2 class="registre_title fw-bold mt-5">Inicie sesión acá ⬇️</h2>
+                        <hr>
+                        <form id="registerForm">
+                            <div>
+                                <label class="form-label mt-3" for="email">Email:</label>
+                                <input class="form-control" type="email" name="email" id="email" required>
+                            </div>
+                            <div>
+                                <label class="form-label mt-3" for="password">Crear password:</label>
+                                <input class="form-control" type="password" name="password" id="password" required>
+                            </div>
+                            <div class="mt-3">
+                                <input class="btn btn-dark" type="submit" value="Inciar sesión">
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5">
+        {{>sectionIcon}}
+    </section>
+</main>
+
+<script>
+
+    let registerForm = document.getElementById("registerForm");
+
+    registerForm.addEventListener("submit", async(event)=>{
+        try{
+            event.preventDefault();
+
+            let formDataSkater = new FormData(registerForm);
+
+            let response = await fetch("/api/v1/skaters/login",{
+                method:'POST',
+                body: formDataSkater
+            })
+
+            let data = await response.json();
+
+            if(response.status == 200){
+                alert(data.msg);
+                console.log(data.token);
+
+                //guardar token localStorage
+
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+
+                location.href="/";
+            }else{
+                alert(data.msg);
+                localStorage.removeItem("token");
+            }
+        }catch{
+            alert("Ha ocurrido un error al intentar inciar sesión, intentelo nuevamente");
+            localStorage.removeItem("token");
+        }
+    })
+</script>

@@ -1,0 +1,54 @@
+<main class="top_main pb-5">
+    {{#if error}}
+    <section>
+        <h2 class="text-center mt-5">{{error}}</h2>
+    </section>
+    {{else}}
+    <section>
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="card bg-dark" style="width: 18rem;">
+                    <img src="../assets/img/imgUsers/{{user.foto_perfil}}" class="card-img-top" alt="image_profie_user">
+                    <div class="card-body bg_card">
+                        <ul>
+                            <li>Identificador: {{user.id}}</li>
+                            <li>Nombre: {{user.nombre}}</li>
+                            <li>Años de experiencia: {{user.anos_experiencia}}</li>
+                            <li>Especialidad: {{user.especialidad}}</li>
+                            <li>Estado: {{user.estado}}</li>
+                        </ul>
+                        <a href="/actualizar" class="btn btn-warning" id="linkActualizar">Actualizar datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container my_container_home mt-3 p-3">
+            <div class="row mt-5 mb-5">
+                <h2>Participantes ⬇️</h2>
+                {{#each skater}}
+                <div class="col-12 col-md-4 mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../assets/img/imgUsers/{{foto_perfil}}" class="card-img-top" alt="image_profie_user">
+                        <div class="card-body">
+                            <ul>
+                                <li>Identificador: {{id}}</li>
+                                <li>Nombre: {{nombre}}</li>
+                                <li>Años de experiencia: {{anos_experiencia}}</li>
+                                <li>Especialidad: {{especialidad}}</li>
+                                <li>Estado: {{estado}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5">
+        {{>sectionIcon}}
+    </section>
+    {{/if}}
+</main>

@@ -1,0 +1,73 @@
+<div class="my_container_nav">
+    <nav class="navbar navbar-expand-lg nav_custom py-5 fixed-top">
+        <div class="container-fluid">
+            <span class="title_nav fs-1 ms-3 me-3" href="#">SkateParK</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mt-3 p-3">
+                    <li class="my_nav_item" id="item-home"><a class="link_nav ms-3 mb-3" href="/">Home</a></li>
+                    <li class="my_nav_item" id="item-login"><a class="link_nav ms-3 mb-3" href="/login">Iniciar
+                            Sesión</a></li>
+                    <li class="my_nav_item" id="item-logout" style="display: none;"><a class="link_nav ms-3 mb-3"
+                            id="logoutLink" href="/logout">Cerrar Sesión</a></li>
+                    <li class="my_nav_item" id="item-participantes"><a class="link_nav ms-3 mb-3" href="/participantes" id="linkParticipantes">Participantes</a></li>
+                    <li class="my_nav_item" id="item-admin"><a class="link_nav ms-3 mb-3" href="/admin" id="linkAdmin">Administración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script>
+    const item_home = document.getElementById("item-home");
+    const item_login = document.getElementById("item-login");
+    const item_logout = document.getElementById("item-logout");
+    const item_participantes = document.getElementById("item-participantes");
+    const item_admin = document.getElementById("item-admin");
+
+    let token = localStorage.getItem("token");
+    let user = JSON.parse(localStorage.getItem("user")); 
+
+    if (token) {
+        item_login.style.display = "none";
+        item_logout.style.display = "block";
+    }
+
+    let logoutLink = document.getElementById("logoutLink");
+
+    logoutLink.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        let confirmar = confirm("Esta seguro de Iniciar su sesión");
+
+        if (confirmar) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            alert("Sesión serrada correctamente");
+            setTimeout(() => {
+                location.href = "/";
+            }, 500);
+        }
+    });
+
+   let linkParticipantes = document.getElementById("linkParticipantes");
+
+   linkParticipantes.addEventListener("click",(event)=>{
+    event.preventDefault();
+
+     location.href=`/participantes?token=${token}`;
+   });
+
+   
+   let linkAdmin = document.getElementById("linkAdmin");
+
+   linkAdmin.addEventListener("click",(event)=>{
+    event.preventDefault();
+
+     location.href=`/admin?token=${token}`;
+   });
+   
+</script>

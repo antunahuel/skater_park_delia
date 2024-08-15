@@ -1,0 +1,98 @@
+<main class="top_main pb-5">
+    <section>
+        <div class="container my_container_home mt-3 p-3">
+            <div class="row text-center mt-5 mb-5">
+                <div class="col-12 col-md-6">
+                    <div>
+                        <img class="img_user" src="../assets/img/img_default.jpg" alt="img_user" width="250">
+                    </div>
+                    <div class="mt-3">
+                        <h3>Usuario Registrado</h3>
+                        <hr>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Nombre: ---</li>
+                            <li>Años de experiencia: ---</li>
+                            <li>Especialidad:---</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6  mt-3">
+                    <div>
+                        <h2 class="registre_title fw-bold">Registrate acá ⬇️</h2>
+                        <hr>
+                        <div class="w-75 ms-5">
+                            <form id="registerForm">
+                                <div>
+                                    <label class="form-label" for="nombre">Nombre:</label>
+                                    <input class="form-control" type="text" name="nombre" id="nombre" required>
+                                </div>
+                                <div>
+                                    <label class="form-label mt-3" for="email">Email:</label>
+                                    <input class="form-control" type="email" name="email" id="email" required>
+                                </div>
+                                <div>
+                                    <label class="form-label mt-3" for="password">Crear password:</label>
+                                    <input class="form-control" type="password" name="password" id="password" required>
+                                </div>
+                                  <div>
+                                    <label class="form-label mt-3" for="confir_pass">Confirmar password:</label>
+                                    <input class="form-control" type="password" name="confir_pass" id="confir_pass" required>
+                                </div>
+                                <div>
+                                    <label class="form-label mt-3" for="anos_experiencia">Años de experiencia:</label>
+                                    <input class="form-control" type="number" name="anos_experiencia" id="anos_experiencia" required>
+                                </div>
+                                <div>
+                                    <label class="form-label mt-3" for="especialidad">Especialidad:</label>
+                                    <input class="form-control" type="text" name="especialidad" id="especialidad" required>
+                                </div>
+                                 <div>
+                                    <label class="form-label mt-3" for="foto_perfil">Imagen de Perfil:</label>
+                                    <input class="form-control" type="file" name="foto_perfil" id="foto_perfil" required>
+                                </div>
+                                <div>
+                                    <input class="btn btn-danger mt-3" type="submit" value="REGISTRARSE">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5">
+         {{>sectionIcon}}
+    </section>
+</main>
+
+<script>
+
+    let registerForm = document.getElementById("registerForm");
+
+    registerForm.addEventListener("submit", async(event)=>{
+        try{
+            event.preventDefault();
+            
+            let formdata = new FormData (registerForm);
+
+            let response = await fetch("/api/v1/registro",{
+                method:'POST',
+                body: formdata
+            });
+
+            let data = await response.json();
+
+            if(response.status == 200){
+                alert(data.msg);
+                registerForm.reset();
+            }else{
+                alert(data.msg);
+            }
+        }catch{
+            alert("Error al intentar realizar registro, inente nuevamente")
+        }
+    });
+</script>

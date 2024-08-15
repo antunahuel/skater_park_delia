@@ -1,0 +1,81 @@
+<main class="top_main pb-5">
+    {{#if error}}
+
+    <section>
+        <h2 class="text-center mt-5">{{error}}</h2>
+    </section>
+
+    {{else}}
+    <section class="vista_descktop">
+        <div class="container d-flex justify-content-center my_container_home mt-3 p-3">
+            <div class="row text-center mt-5 mb-5 w-75">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Años de Experiencia</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each skaters}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td>
+                                <img src="../assets/img/imgUsers/{{foto_perfil}}" alt="img_user" width="100">
+                            </td>
+                            <td>{{nombre}}</td>
+                            <td>{{anos_experiencia}}</td>
+                            <td>{{especialidad}}</td>
+                            <td>
+                                <div class="form-check">
+                                    <button class="btn btn-danger" onclick="cambiarEstado({{id}})">Cambiar
+                                        Estado</button>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="vista_movil">
+        {{>vistamovil}}
+    </section>
+
+    <section class="mt-5">
+        {{>sectionIcon}}
+    </section>
+    {{/if}}
+</main>
+
+<script>
+    const cambiarEstado = async (id) => {
+        try {
+            let token = localStorage.getItem("token");
+
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Beare ${token}`);
+
+            let response = await fetch(`/api/v1/skater/admin/${id}`, {
+                method: 'PUT',
+                headers: myHeaders
+            })
+
+            let data = await response.json();
+
+            if (response.status == 200) {
+                alert(data.msg);
+                location.reload();
+            }
+        } catch(error){
+            alert(`Error al realiza cambio de estado de skater con id: ${id}`)
+        }
+
+    }
+</script>

@@ -1,0 +1,165 @@
+body {
+    background-color: rgb(255, 204, 0);
+}
+
+.my_container_nav {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+.nav_custom {
+    background: url(../img/img_nav.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-color: orangered !important; */
+}
+
+.title_nav {
+    font-family: "Sedgwick Ave", cursive;
+    font-weight: 900;
+    color: rgb(253, 253, 253);
+    font-style: normal;
+}
+
+.my_nav_item{
+    margin-top: 25px;
+}
+
+.link_nav {
+    font-family: "Sedgwick Ave", cursive;
+    font-size: 17px;
+    color: white;
+    background-color: rgb(37, 6, 67, 0.6);
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(202, 227, 17);
+    text-decoration: none;
+
+}
+
+.navbar-toggler {
+    background-color: rgb(14, 237, 245) !important;
+}
+
+.my_container_home {
+    background: url(../img/img_section1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.img_inicio {
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.subtitle {
+    font-family: "Sedgwick Ave", cursive;
+    font-weight: bold;
+}
+
+.container_section2 {
+    border-radius: 20px;
+    color: white;
+}
+
+.top_main {
+    margin-top: 200px;
+}
+
+.icon_img{
+    border-radius: 50px;
+    border: 3px solid white;
+    padding: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tit-footer{
+    font-family: "Sedgwick Ave", cursive;
+}
+
+/*estilos registro*/
+
+.registre_title{
+    font-family: "Sedgwick Ave", cursive;
+    font-size: 25px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.img_user {
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.container-form{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+.bg_card{
+    background-color: black !important;
+    color: white;
+}
+
+.nombre_skater{
+    color: yellowgreen;
+    margin-left: 2px;
+    background-color: rgb(39, 8, 69);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+/* mediaquery */
+@media (max-width: 1440px) {  
+    .vista_movil{
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .img_inicio {
+        width: 320px;
+    }
+
+    .top_main {
+        margin-top: 170px;
+    }
+
+    .img_user{
+        width: 180px;
+    }
+    
+    .vista_movil{
+        display: none;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .img_inicio {
+        width: 280px;
+    }
+
+    .top_main {
+        margin-top: 150px;
+    }
+
+    .img_user{
+        width: 180px;
+    }
+
+    .vista_descktop{
+        display: none;
+    }
+
+    .vista_movil{
+        display: block;
+    }
+}
